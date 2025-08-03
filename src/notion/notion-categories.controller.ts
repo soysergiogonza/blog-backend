@@ -86,11 +86,13 @@ export class NotionCategoriesController {
       page.properties.Category?.select?.name === category
     );
 
-    const subcategories = categoryPages.filter(page => 
+    const subcategories = pages.filter(page => 
+      page.properties.Category?.select?.name === category &&
       page.properties.Type?.select?.name === 'Folder'
     );
 
-    const articles = categoryPages.filter(page => 
+    const articles = pages.filter(page => 
+      page.properties.Category?.select?.name === category &&
       page.properties.Type?.select?.name === 'Article'
     );
 
@@ -98,25 +100,25 @@ export class NotionCategoriesController {
       category,
       pages: categoryPages.map(page => ({
         id: page.id,
-        title: page.properties.Title.title[0].text.content,
-        category: page.properties.Category.select.name,
-        type: page.properties.Type.select.name,
+        title: page.properties.Title?.title?.[0]?.text?.content || 'Sin título',
+        category: page.properties.Category?.select?.name || 'Sin categoría',
+        type: page.properties.Type?.select?.name || 'Sin tipo',
         url: page.url,
         icon: page.icon
       })),
       subcategories: subcategories.map(page => ({
         id: page.id,
-        title: page.properties.Title.title[0].text.content,
-        category: page.properties.Category.select.name,
-        type: page.properties.Type.select.name,
+        title: page.properties.Title?.title?.[0]?.text?.content || 'Sin título',
+        category: page.properties.Category?.select?.name || 'Sin categoría',
+        type: page.properties.Type?.select?.name || 'Sin tipo',
         url: page.url,
         icon: page.icon
       })),
       articles: articles.map(page => ({
         id: page.id,
-        title: page.properties.Title.title[0].text.content,
-        category: page.properties.Category.select.name,
-        type: page.properties.Type.select.name,
+        title: page.properties.Title?.title?.[0]?.text?.content || 'Sin título',
+        category: page.properties.Category?.select?.name || 'Sin categoría',
+        type: page.properties.Type?.select?.name || 'Sin tipo',
         url: page.url,
         icon: page.icon
       }))
@@ -135,9 +137,9 @@ export class NotionCategoriesController {
 
     return subcategories.map(page => ({
       id: page.id,
-      title: page.properties.Title.title[0].text.content,
-      category: page.properties.Category.select.name,
-      type: page.properties.Type.select.name,
+      title: page.properties.Title?.title?.[0]?.text?.content || 'Sin título',
+      category: page.properties.Category?.select?.name || 'Sin categoría',
+      type: page.properties.Type?.select?.name || 'Sin tipo',
       url: page.url,
       icon: page.icon
     }));
@@ -155,9 +157,9 @@ export class NotionCategoriesController {
 
     return articles.map(page => ({
       id: page.id,
-      title: page.properties.Title.title[0].text.content,
-      category: page.properties.Category.select.name,
-      type: page.properties.Type.select.name,
+      title: page.properties.Title?.title?.[0]?.text?.content || 'Sin título',
+      category: page.properties.Category?.select?.name || 'Sin categoría',
+      type: page.properties.Type?.select?.name || 'Sin tipo',
       url: page.url,
       icon: page.icon
     }));
