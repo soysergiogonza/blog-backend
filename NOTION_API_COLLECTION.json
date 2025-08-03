@@ -1,0 +1,475 @@
+{
+  "info": {
+    "name": "Notion Blog API",
+    "description": "API completa para el backend de blog con Notion",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "health"]
+        },
+        "description": "Verificar el estado del servidor"
+      }
+    },
+    {
+      "name": "Database Info",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/database",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "database"]
+        },
+        "description": "Obtener información de la base de datos"
+      }
+    },
+    {
+      "name": "Get All Pages",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/pages",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "pages"]
+        },
+        "description": "Obtener todas las páginas"
+      }
+    },
+    {
+      "name": "Get Pages with Filter",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/pages?filter=%7B%22property%22%3A%22Type%22%2C%22select%22%3A%7B%22equals%22%3A%22Article%22%7D%7D",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "pages"],
+          "query": [
+            {
+              "key": "filter",
+              "value": "{\"property\":\"Type\",\"select\":{\"equals\":\"Article\"}}",
+              "description": "Filtro para obtener solo artículos"
+            }
+          ]
+        },
+        "description": "Obtener páginas con filtro específico"
+      }
+    },
+    {
+      "name": "Get Page Titles",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/titles",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "titles"]
+        },
+        "description": "Obtener solo los títulos de las páginas"
+      }
+    },
+    {
+      "name": "Get Page by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/pages/{{page_id}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "pages", "{{page_id}}"]
+        },
+        "description": "Obtener una página específica por ID"
+      }
+    },
+    {
+      "name": "Get Page Content",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/content/{{page_id}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "content", "{{page_id}}"]
+        },
+        "description": "Obtener el contenido de una página específica"
+      }
+    },
+    {
+      "name": "Create Page",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"properties\": {\n    \"Title\": {\n      \"title\": [\n        {\n          \"text\": {\n            \"content\": \"Nueva página de prueba\"\n          }\n        }\n      ]\n    }\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/notion/pages",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "pages"]
+        },
+        "description": "Crear una nueva página"
+      }
+    },
+    {
+      "name": "Update Page",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"properties\": {\n    \"Title\": {\n      \"title\": [\n        {\n          \"text\": {\n            \"content\": \"Página actualizada\"\n          }\n        }\n      ]\n    }\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/notion/pages/{{page_id}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "pages", "{{page_id}}"]
+        },
+        "description": "Actualizar una página existente"
+      }
+    },
+    {
+      "name": "Delete Page",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/pages/{{page_id}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "pages", "{{page_id}}"]
+        },
+        "description": "Eliminar una página (marcar como archivada)"
+      }
+    },
+    {
+      "name": "Sections - Get Folders",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/sections/folders",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "sections", "folders"]
+        },
+        "description": "Obtener todas las carpetas"
+      }
+    },
+    {
+      "name": "Sections - Get Articles",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/sections/articles",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "sections", "articles"]
+        },
+        "description": "Obtener todos los artículos"
+      }
+    },
+    {
+      "name": "Sections - Get by Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/sections/by-category/JavaScript",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "sections", "by-category", "JavaScript"]
+        },
+        "description": "Obtener páginas por categoría específica"
+      }
+    },
+    {
+      "name": "Sections - Get by Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/sections/by-status/published",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "sections", "by-status", "published"]
+        },
+        "description": "Obtener páginas por estado específico"
+      }
+    },
+    {
+      "name": "Sections - Get Categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/sections/categories",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "sections", "categories"]
+        },
+        "description": "Obtener todas las categorías disponibles"
+      }
+    },
+    {
+      "name": "Sections - Get Statuses",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/sections/statuses",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "sections", "statuses"]
+        },
+        "description": "Obtener todos los estados disponibles"
+      }
+    },
+    {
+      "name": "Sections - Get Types",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/sections/types",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "sections", "types"]
+        },
+        "description": "Obtener todos los tipos disponibles"
+      }
+    },
+    {
+      "name": "Sections - Get Hierarchy",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/sections/hierarchy",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "sections", "hierarchy"]
+        },
+        "description": "Obtener la jerarquía completa (carpetas y artículos)"
+      }
+    },
+    {
+      "name": "Sections - Search Pages",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/sections/search?query=JavaScript",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "sections", "search"],
+          "query": [
+            {
+              "key": "query",
+              "value": "JavaScript",
+              "description": "Término de búsqueda"
+            }
+          ]
+        },
+        "description": "Buscar páginas por término específico"
+      }
+    },
+    {
+      "name": "Sections - Get Recent Pages",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/sections/recent?limit=5",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "sections", "recent"],
+          "query": [
+            {
+              "key": "limit",
+              "value": "5",
+              "description": "Número de páginas recientes a obtener"
+            }
+          ]
+        },
+        "description": "Obtener las páginas más recientes"
+      }
+    },
+    {
+      "name": "Categories - Get All Categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/categories",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "categories"]
+        },
+        "description": "Obtener todas las categorías"
+      }
+    },
+    {
+      "name": "Categories - Get Structure",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/categories/structure",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "categories", "structure"]
+        },
+        "description": "Obtener la estructura completa de categorías"
+      }
+    },
+    {
+      "name": "Categories - Get Main Categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/categories/main",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "categories", "main"]
+        },
+        "description": "Obtener solo las categorías principales"
+      }
+    },
+    {
+      "name": "Categories - Get Category Content",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/categories/JavaScript",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "categories", "JavaScript"]
+        },
+        "description": "Obtener el contenido de una categoría específica"
+      }
+    },
+    {
+      "name": "Categories - Get Subcategories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/categories/JavaScript/subcategories",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "categories", "JavaScript", "subcategories"]
+        },
+        "description": "Obtener subcategorías de una categoría específica"
+      }
+    },
+    {
+      "name": "Categories - Get Category Articles",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/categories/JavaScript/articles",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "categories", "JavaScript", "articles"]
+        },
+        "description": "Obtener artículos de una categoría específica"
+      }
+    },
+    {
+      "name": "Categories - Search in Categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/categories/search/JavaScript",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "categories", "search", "JavaScript"]
+        },
+        "description": "Buscar en categorías por término específico"
+      }
+    },
+    {
+      "name": "Categories - Get Category Tree",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/notion/categories/tree/structure",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["notion", "categories", "tree", "structure"]
+        },
+        "description": "Obtener la estructura de árbol de categorías"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "page_id",
+      "value": "your-page-id-here",
+      "description": "ID de una página específica para pruebas"
+    }
+  ]
+} 
